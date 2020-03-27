@@ -4,15 +4,15 @@ using Rocket.API;
 
 namespace DaeEsyaKaraListeleyici
 {
-	public class EşyaKaraListeleyiciYapılandırma : IRocketPluginConfiguration
+    public class EşyaKaraListeleyiciYapılandırma : IRocketPluginConfiguration
     {
         public List<KaraListe> KaraListeler { get; set; } = new List<KaraListe>();
 
         public void LoadDefaults()
         {
             KaraListeler = new List<KaraListe>
-			{
-				new KaraListe
+            {
+                new KaraListe
                 (
                     "patlayici",
                     new List<Eşya>
@@ -20,9 +20,9 @@ namespace DaeEsyaKaraListeleyici
                         new Eşya(519),
                         new Eşya(254),
                         new Eşya(1100)
-					}
-				),
-				new KaraListe
+                    }
+                ),
+                new KaraListe
                 (
                     "silah",
                     new List<Eşya>
@@ -33,9 +33,9 @@ namespace DaeEsyaKaraListeleyici
                         new Eşya(310),
                         new Eşya(363),
                         new Eşya(116)
-					}
-				)
-			};
+                    }
+                )
+            };
         }
     }
 }
