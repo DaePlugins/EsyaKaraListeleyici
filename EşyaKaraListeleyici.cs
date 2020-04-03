@@ -24,7 +24,7 @@ namespace DaeEsyaKaraListeleyici
             PlayerCrafting.onCraftBlueprintRequested -= EşyaOluşturmasıİstendiğinde;
         }
 
-        private void EşyaAlınmasıİstendiğinde(Player eşyaAlanOyuncu, byte x, byte y, uint örnekIdsi, byte toX, byte toY, byte toRot, byte toPage, ItemData eşyaVerisi, ref bool eşyayıAlabilir)
+        private void EşyaAlınmasıİstendiğinde(Player eşyaAlanOyuncu, byte x, byte y, uint örnekIdsi, byte hedefX, byte hedefY, byte hedefAçı, byte hedefSayfa, ItemData eşyaVerisi, ref bool eşyayıAlabilir)
 		{
 		    var oyuncu = UnturnedPlayer.FromPlayer(eşyaAlanOyuncu);
             if (oyuncu.IsAdmin)
