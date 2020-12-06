@@ -8,39 +8,39 @@ using SDG.Unturned;
 
 namespace DaeEsyaKaraListeleyici
 {
-	public class EşyaKaraListeleyici : RocketPlugin<EşyaKaraListeleyiciYapılandırma>
+    public class EşyaKaraListeleyici : RocketPlugin<EşyaKaraListeleyiciYapılandırma>
     {
         protected override void Load()
         {
-			ItemManager.onTakeItemRequested += EşyaAlınmasıİstendiğinde;
+            ItemManager.onTakeItemRequested += EşyaAlınmasıİstendiğinde;
             UnturnedPlayerEvents.OnPlayerInventoryAdded += EşyaAlındığında;
             PlayerCrafting.onCraftBlueprintRequested += EşyaOluşturmasıİstendiğinde;
         }
 
         protected override void Unload()
-		{
-			ItemManager.onTakeItemRequested -= EşyaAlınmasıİstendiğinde;
-		    UnturnedPlayerEvents.OnPlayerInventoryAdded -= EşyaAlındığında;
+        {
+            ItemManager.onTakeItemRequested -= EşyaAlınmasıİstendiğinde;
+            UnturnedPlayerEvents.OnPlayerInventoryAdded -= EşyaAlındığında;
             PlayerCrafting.onCraftBlueprintRequested -= EşyaOluşturmasıİstendiğinde;
         }
 
         private void EşyaAlınmasıİstendiğinde(Player eşyaAlanOyuncu, byte x, byte y, uint örnekIdsi, byte hedefX, byte hedefY, byte hedefAçı, byte hedefSayfa, ItemData eşyaVerisi, ref bool eşyayıAlabilir)
-		{
-		    var oyuncu = UnturnedPlayer.FromPlayer(eşyaAlanOyuncu);
+        {
+            var oyuncu = UnturnedPlayer.FromPlayer(eşyaAlanOyuncu);
             if (oyuncu.IsAdmin)
             {
                 return;
             }
 
-		    var eşya = ItemManager.regions[x, y].items.FirstOrDefault(e => e.instanceID == örnekIdsi);
+            var eşya = ItemManager.regions[x, y].items.FirstOrDefault(e => e.instanceID == örnekIdsi);
             if (eşya?.item != null && EşyaKaraListede(eşya.item.id) && !EşyayıAlabilir(oyuncu, eşya.item.id))
             {
                 eşyayıAlabilir = false;
             }
         }
 
-	    private void EşyaAlındığında(UnturnedPlayer oyuncu, InventoryGroup sayfa, byte sıra, ItemJar eşyaKutusu)
-	    {
+        private void EşyaAlındığında(UnturnedPlayer oyuncu, InventoryGroup sayfa, byte sıra, ItemJar eşyaKutusu)
+        {
             if (oyuncu.IsAdmin)
             {
                 return;
